@@ -1,0 +1,84 @@
+// Spinners
+.spinner-3 {
+  pointer-events: none;
+  color: var(--green);
+
+  div {
+    width: 10px;
+    height: 10px;
+    margin-right: 2px;
+    background-color: currentColor;
+    border-radius: 100%;
+    display: inline-block;
+    animation: bounce-delay 1.4s infinite ease-in-out;
+  }
+
+  .bounce1 {
+    animation-delay: -0.32s;
+  }
+
+  .bounce2 {
+    animation-delay: -0.16s;
+  }
+
+  .bounce3 {
+    animation-delay: 0;
+  }
+}
+
+.spinner-3.xs {
+  div {
+    width: 6px;
+    height: 6px;
+    margin-right: 2px;
+  }
+}
+
+.spinner-3.md {
+  div {
+    width: 30px;
+    height: 30px;
+    margin-right: 4px;
+  }
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity linear 0.1s;
+  background: rgba(255, 255, 255, 0.4);
+
+  &.active {
+    pointer-events: auto;
+    opacity: 1;
+  }
+}
+.ng-dropdown-panel {
+  box-sizing: border-box;
+  position: absolute;
+  top: 30px;
+  background-color: #f5f5f5;
+  left: 0px;
+  padding: 8px 2px;
+  opacity: 0;
+  width: 100%;
+  z-index: 1050;
+  -webkit-overflow-scrolling: touch;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option{
+  padding: 5px 3px;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option:hover{
+  background-color: #4555e8;
+  color: white;
+}

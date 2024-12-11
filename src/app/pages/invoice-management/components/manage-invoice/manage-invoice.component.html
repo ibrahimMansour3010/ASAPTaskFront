@@ -1,0 +1,124 @@
+<div class="p-3 w-100">
+  <h4 class="mt-2">New Invoice</h4>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        <!-- Item Selection -->
+        <ng-select
+          [items]="itemList"
+          bindLabel="name"
+          searchable="true"
+          clearable="true"
+          class="form-select"
+          hideSelected="true"
+          [(ngModel)]="selectedItem"
+        ></ng-select>
+      </div>
+      <div class="col-4 text-end justify-content-end">
+        <button
+          type="button"
+          class="btn btn-primary mb-3"
+          (click)="addItem()"
+        >
+          Add Item
+        </button>
+      </div>
+    </div>
+    <form [formGroup]="invoiceForm" >
+      <div style="height: 50vh;" class="overflow-y-scroll overflow-x-hidden " >
+        <!-- Items List -->
+        <div formArrayName="items">
+          <div>Items</div>
+          <div
+            *ngFor="let item of items.controls; let i = index"
+            [formGroupName]="i"
+            class="border p-3 mb-3 row"
+          >
+            <div class="col-9">
+              <div>{{ item.get("name")?.value }}</div>
+            </div>
+            <div class="col-3 text-end justify-content-end">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="removeItem(i)"
+              >
+                Remove Item
+              </button>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="unitPrice-{{ i }}">Unit Price</label>
+                <input
+                  id="unitPrice-{{ i }}"
+                  type="number"
+                  class="form-control"
+                  readonly
+                  formControlName="unitPrice"
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="availableQuantity-{{ i }}"
+                  >Available Quantity</label
+                >
+                <input
+                  id="availableQuantity-{{ i }}"
+                  type="number"
+                  class="form-control"
+                  readonly
+                  formControlName="availableQuantity"
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="selectedQuantity-{{ i }}">Selected Quantity</label>
+                <input
+                  id="selectedQuantity-{{ i }}"
+                  type="number"
+                  class="form-control"
+                  formControlName="selectedQuantity"
+                />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="price-{{ i }}">Price</label>
+                <input
+                  id="price-{{ i }}"
+                  type="number"
+                  [value]="getValue(item)"
+                  class="form-control"
+                  formControlName="price"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Total Price -->
+       <div class="row">
+        <div class="col-8">
+          <label for="totalPrice">Total Price</label>
+          <input
+            id="totalPrice"
+            type="number"
+            readonly
+            class="form-control"
+            formControlName="totalPrice"
+          />
+        </div>
+        <div class="col-4">
+          <label for=""></label>
+          <div class="justify-content-end text-end">
+            <button type="reset" (click)="onReset()" class="btn btn-danger mb-3 mx-1">Cancel</button>
+            <button type="submit" [disabled]="!invoiceForm.valid" (click)="submitForm()" class="btn btn-primary mb-3 mx-1">Submit</button>
+          </div>
+        </div>
+       </div>
+    </form>
+  </div>
+</div>

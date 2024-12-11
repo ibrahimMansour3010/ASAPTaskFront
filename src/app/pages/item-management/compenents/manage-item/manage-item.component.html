@@ -1,0 +1,34 @@
+<div class="p-3 w-100">
+  <h3 class="mt-2" >New Item</h3>
+  <form class="p-3" [formGroup]="itemForm">
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Name </mat-label>
+      <input matInput formControlName="name">
+      <mat-error>Name Is Required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100 mt-3">
+      <mat-label>Description </mat-label>
+      <input matInput formControlName="description">
+      <mat-error>Description Is Required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100 mt-3">
+      <mat-label>Unit Price </mat-label>
+      <input matInput type="number" formControlName="unitPrice">
+      <mat-error>Unit Price Is Required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100 mt-3">
+      <mat-label>Available Quantity </mat-label>
+      <input matInput type="number" formControlName="availableQuantity">
+      <mat-error>Available Quantity Is Required</mat-error>
+    </mat-form-field>
+
+    <div class="mt-5 text-end">
+      <button type="reset" (click)="onReset()" class="btn btn-danger mb-3 mx-1">Cancel</button>
+      <button type="submit" [disabled]="!itemForm.valid" (click)="onSubmit()" class="btn btn-primary mb-3 mx-1">Submit</button>
+    </div>
+  </form>
+</div>
